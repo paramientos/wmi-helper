@@ -1,25 +1,23 @@
 # wmi-helper
 Wmi Helper for C#
 
-WMI (Windows Management Instrumentation) information can be hande by C# easily.But maybe you want to use the strong typed object in your project. So wmi-helper does automatic mapping to model clases, so you can easily work with WMI classes without having to worry about writing complex queries and handling WMI connections
+WMI (Windows Management Instrumentation) information can be hande by C# easly.But maybe you want to use strong typed object in your project.So wmi-helperd does automatic mapping to model clases so you can easily work with WMI classes without having to worry about writing complex queries and handling WMI connections
 
 ## Usage
 
-     public class ComputerSystemInfoModel
-     {
-            public string Caption{ get; set; }
-            public string WorkGroup { get; set; }
-            public string Manufacturer{ get; set; }
-            public string Model { get; set; }
-            public string Name { get; set; }
-            public string PrimaryOwnerName{ get; set; }
-     }
+     public class OperatingSystemInfoModel
+        {
+            public string Caption { get; set; }
+    		public string BuildNumber { get; set; }
+    		public string OSArchitecture { get; set; }
+    		public string Version { get; set; }
+            public string WindowsDirectory { get; set; }
+        }
         
-     public async Task<ComputerSystemInfoModel> GetComputerSystem()
-     {
-         return await WmiConnectionHelper.QueryFirstOrDefaultAsync<ComputerSystemInfoModel>(
-             "SELECT * FROM Win32_ComputerSystem");
-     }
+      public async Task<OperatingSystemInfoModel> GetOperationSystem()
+       {
+          return await Wmi.QueryAsync<OperatingSystemInfoModel>("SELECT * FROM Win32_OperatingSystem");
+       }
 
 ## Avilable methods :
 
